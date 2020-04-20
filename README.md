@@ -7,31 +7,15 @@
 * NPM
 * Project Setup
 * Express.js Framework
-* Code checks
+
+Links:
+* NPM Packages, Beispiel express: https://www.npmjs.com/package/express
+* Express Hello World: https://expressjs.com/en/starter/hello-world.html
+* Express Static Middleware: https://expressjs.com/en/starter/static-files.html
+
 
 
 ### Session 2
-* Databases
-* MongoDB
-
-
-### Session 3
-* Asynchronous calls
-* Event Queue
-
-
-### Session 4
-* Connect frontend to backend
-* Express.js
-
-
-### Session 5
-* Deployment
-* Favicon
-* 404 Page
-
-
-### Session 6
-* REST API endpoints
-* Static documents
-* Best practices
+* HTTP Protocol
+* REST API
+* Create Read Update Delete (CRUD)

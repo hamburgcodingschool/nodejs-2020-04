@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-2020-04",
+  "version": "0.0.1",
+  "description": "Kursmaterial für den nodejs Kurs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamburgcodingschool/nodejs-2020-04.git"
+  },
+  "author": "Paul Mölders",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hamburgcodingschool/nodejs-2020-04/issues"
+  },
+  "homepage": "https://github.com/hamburgcodingschool/nodejs-2020-04#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
