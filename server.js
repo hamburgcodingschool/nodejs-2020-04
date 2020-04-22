@@ -22,5 +22,31 @@ app.get('/list', (request, response) => {
   response.end();
 });
 
+/***** HOMEWORK SESSION 2 (für Freitag) hier
+route /posts anlegen, die einen oder mehrere (als JSON hinterlegte) Posts zurückgibt.
+
+Beispiel Post:
+{
+  "author": "Clemens_B",
+  "author_image": "img/icon_cm--portugal.jpg",
+  "date": {
+    "seconds": 1586683203,
+    "nanoseconds": 256000000
+  },
+  "image": {
+    "alt": "Temple of Ramesses II",
+    "src": "/img/24Abu_simbel_Temple800.jpg"
+  },
+  "location": {
+    "city": "Aswan",
+    "country": "Egypt",
+    "lat": 22.336944,
+    "lng": 31.625556
+  },
+  "text": "If this is visible on your website, the homework is done.     The Great Temple at Abu Simbel, which took about twenty years to build, was completed around year 24 of the reign of Ramesses the Great (which corresponds to 1265 BC). It was dedicated to the gods Amun, Ra-Horakhty, and Ptah, as well as to the deified Ramesses himself. It is generally considered the grandest and most beautiful of the temples commissioned during the reign of Ramesses II, and one of the most beautiful in Egypt.",
+  "title": "Temple of Ramesses II"
+}
+*/
+
 app.listen(3000, () => console.log('Server started'));
 // STARTEN: nodemon server.js

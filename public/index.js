@@ -8,6 +8,10 @@ const logOutButton = document.getElementById("logOutButton");
 
 const db = firebase.firestore();
 
+/***** HOMEWORK SESSION 2 (für Freitag)
+hier sollen die Posts nicht von Firebase geladen werden, sondern von der node.js API /posts aus server.js
+*/
+
 db.collection("posts")
   .get()
   .then((posts) => {
