@@ -16,6 +16,10 @@ Links:
 
 
 ### Session 2
-* HTTP Protocol
+* HTTP Protocol (Siehe Handout)
 * REST API
-* Create Read Update Delete (CRUD)
+* fetch() im Browser
+
+Links:
+* Fetch (nachfolger von XMLHttpRequest): https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+* Lange Liste der HTTP Header: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
