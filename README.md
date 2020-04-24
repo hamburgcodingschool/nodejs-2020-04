@@ -26,6 +26,11 @@ Links:
 
 
 ### Session 3
+* fetch, JSON.parse, JSON.stringify, body-parser
 * CRUD
-* HTTP GET/POST/DELETE/PATCH
-* Database Connection
+* HTTP GET vs POST
+* fs.writeFile, fs.readFile
+
+Links:
+* Warum braucht man den Body-Parser: https://www.quora.com/What-exactly-does-body-parser-do-with-express-js-and-why-do-I-need-it
+* CRUD - Create Read Update Delete: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete

@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 const app = express();
 
 app.use(bodyParser.json());
@@ -78,23 +79,35 @@ app.get('/posts', (request, response) => {
 });
 
 
+
+
+
+
+let messages = [{ text: 'Hallo', sender: 'Alfons' }, { text: 'Hi!', sender: 'Alf' }];
+
 // CREATE MESSAGE: POST /message => Nachricht anlegen
-
-// UPDATE MESSAGE: PATCH /message => Nachricht bearbeiten
-// DELETE MESSAGE: DELETE /message => Nachricht löschen
-
-const messages = [{ text: 'Hallo', sender: 'Alfons' }, { text: 'Hi!', sender: 'Alf' }];
 app.post('/message', (request, response) => {
   const message = request.body;
   messages.push(message);
+
+  fs.writeFile('./chatMessages.json', JSON.stringify(messages), (error) => {
+    response.end();
+  });
 });
 
 // READ MESSAGES: GET /messages => Nachrichten auslesen
 app.get('/messages', (request, response) => {
-  response.write(JSON.stringify(messages));
-  response.end();
-})
+  fs.readFile('./chatMessages.json', (error, data) => {
+    const messagesFromFile = JSON.parse(data.toString());
+    messages = messagesFromFile;
+    response.write(JSON.stringify(messagesFromFile));
+    response.end();
+  });
+});
 
+
+// UPDATE MESSAGE: PATCH /message => Nachricht bearbeiten
+// DELETE MESSAGE: DELETE /message => Nachricht löschen
 
 
 app.listen(3000, () => console.log('Server started'));
