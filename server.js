@@ -1,6 +1,8 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
 const registeredNames = [];
@@ -47,6 +49,53 @@ Beispiel Post:
   "title": "Temple of Ramesses II"
 }
 */
+const posts = [
+  {
+    "author": "Clemens_B",
+    "author_image": "img/icon_cm--portugal.jpg",
+    "date": {
+      "seconds": 1586683203,
+      "nanoseconds": 256000000
+    },
+    "image": {
+      "alt": "Temple of Ramesses II",
+      "src": "/img/24Abu_simbel_Temple800.jpg"
+    },
+    "location": {
+      "city": "Aswan",
+      "country": "Egypt",
+      "lat": 22.336944,
+      "lng": 31.625556
+    },
+    "text": "Aus nodejs",
+    "title": "Temple of Ramesses II"
+  }
+]
+
+app.get('/posts', (request, response) => {
+  response.write(JSON.stringify(posts));
+  response.end();
+});
+
+
+// CREATE MESSAGE: POST /message => Nachricht anlegen
+
+// UPDATE MESSAGE: PATCH /message => Nachricht bearbeiten
+// DELETE MESSAGE: DELETE /message => Nachricht löschen
+
+const messages = [{ text: 'Hallo', sender: 'Alfons' }, { text: 'Hi!', sender: 'Alf' }];
+app.post('/message', (request, response) => {
+  const message = request.body;
+  messages.push(message);
+});
+
+// READ MESSAGES: GET /messages => Nachrichten auslesen
+app.get('/messages', (request, response) => {
+  response.write(JSON.stringify(messages));
+  response.end();
+})
+
+
 
 app.listen(3000, () => console.log('Server started'));
 // STARTEN: nodemon server.js

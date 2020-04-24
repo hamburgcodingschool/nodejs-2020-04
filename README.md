@@ -23,3 +23,9 @@ Links:
 Links:
 * Fetch (nachfolger von XMLHttpRequest): https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 * Lange Liste der HTTP Header: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+
+
+### Session 3
+* CRUD
+* HTTP GET/POST/DELETE/PATCH
+* Database Connection
