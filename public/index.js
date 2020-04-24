@@ -6,42 +6,39 @@ const infoWindows = [];
 const mapDiv = document.getElementById("map");
 const logOutButton = document.getElementById("logOutButton");
 
-const db = firebase.firestore();
 
-/***** HOMEWORK SESSION 2 (für Freitag)
-hier sollen die Posts nicht von Firebase geladen werden, sondern von der node.js API /posts aus server.js
-*/
+fetch('/posts').then(response => response.json()).then(posts => {
+  createPosts(posts);
+});
 
-db.collection("posts")
-  .get()
-  .then((posts) => {
-    posts.forEach((post) => {
-      const json = post.data();
-      const postHtml = createPostHtml(json);
+function createPosts(posts) {
+  // posts: "[{ title: '...'}]" => [{}]
+  posts.forEach((post) => {
+    const postHtml = createPostHtml(post);
 
-      const marker = new google.maps.Marker({
-        position: getPosition(json),
-        map: map,
-        animation: google.maps.Animation.DROP,
-        title: `${json.title}`
-      });
-
-      markers.push(marker);
-
-      marker.addListener("click", () => {
-        closeInfoWindows();
-        infoWindow.open(map, marker);
-        map.setZoom(5);
-        map.setCenter(marker.getPosition());
-      });
-
-      const infoWindow = new google.maps.InfoWindow({
-        content: postHtml,
-      });
-
-      infoWindows.push(infoWindow);
+    const marker = new google.maps.Marker({
+      position: getPosition(post),
+      map: map,
+      animation: google.maps.Animation.DROP,
+      title: `${post.title}`
     });
+
+    markers.push(marker);
+
+    marker.addListener("click", () => {
+      closeInfoWindows();
+      infoWindow.open(map, marker);
+      map.setZoom(5);
+      map.setCenter(marker.getPosition());
+    });
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: postHtml,
+    });
+
+    infoWindows.push(infoWindow);
   });
+}
 
 function initMap() {
   map = new google.maps.Map(mapDiv, {
