@@ -34,3 +34,12 @@ Links:
 Links:
 * Warum braucht man den Body-Parser: https://www.quora.com/What-exactly-does-body-parser-do-with-express-js-and-why-do-I-need-it
 * CRUD - Create Read Update Delete: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+
+
+### Session 4
+* fetch, JSON.parse, body parser
+* Sicherheitsabfrage
+* HTTP Status Codes
+
+Links:
+* HTTP Status Codes und deren Bedeutung: https://httpstatuses.com/

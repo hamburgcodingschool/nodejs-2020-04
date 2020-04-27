@@ -25,85 +25,33 @@ app.get('/list', (request, response) => {
   response.end();
 });
 
-/***** HOMEWORK SESSION 2 (für Freitag) hier
-route /posts anlegen, die einen oder mehrere (als JSON hinterlegte) Posts zurückgibt.
-
-Beispiel Post:
-{
-  "author": "Clemens_B",
-  "author_image": "img/icon_cm--portugal.jpg",
-  "date": {
-    "seconds": 1586683203,
-    "nanoseconds": 256000000
-  },
-  "image": {
-    "alt": "Temple of Ramesses II",
-    "src": "/img/24Abu_simbel_Temple800.jpg"
-  },
-  "location": {
-    "city": "Aswan",
-    "country": "Egypt",
-    "lat": 22.336944,
-    "lng": 31.625556
-  },
-  "text": "If this is visible on your website, the homework is done.     The Great Temple at Abu Simbel, which took about twenty years to build, was completed around year 24 of the reign of Ramesses the Great (which corresponds to 1265 BC). It was dedicated to the gods Amun, Ra-Horakhty, and Ptah, as well as to the deified Ramesses himself. It is generally considered the grandest and most beautiful of the temples commissioned during the reign of Ramesses II, and one of the most beautiful in Egypt.",
-  "title": "Temple of Ramesses II"
-}
-*/
-const posts = [
-  {
-    "author": "Clemens_B",
-    "author_image": "img/icon_cm--portugal.jpg",
-    "date": {
-      "seconds": 1586683203,
-      "nanoseconds": 256000000
-    },
-    "image": {
-      "alt": "Temple of Ramesses II",
-      "src": "/img/24Abu_simbel_Temple800.jpg"
-    },
-    "location": {
-      "city": "Aswan",
-      "country": "Egypt",
-      "lat": 22.336944,
-      "lng": 31.625556
-    },
-    "text": "Aus nodejs",
-    "title": "Temple of Ramesses II"
-  }
-]
-
-app.get('/posts', (request, response) => {
-  response.write(JSON.stringify(posts));
-  response.end();
-});
-
-
-
-
-
-
 let messages = [{ text: 'Hallo', sender: 'Alfons' }, { text: 'Hi!', sender: 'Alf' }];
+
+// Aufgabe: nur Namen, die vorher registriert sind dürfen Nachrichten schreiben
 
 // CREATE MESSAGE: POST /message => Nachricht anlegen
 app.post('/message', (request, response) => {
   const message = request.body;
-  messages.push(message);
 
-  fs.writeFile('./chatMessages.json', JSON.stringify(messages), (error) => {
-    response.end();
-  });
+  const sender = message.sender;
+  const found = registeredNames.indexOf(sender) >= 0;
+
+  if (found) {
+    messages.push(message);
+  } else {
+    response.statusCode = 401; // 401 Unauthorized; 404 Not Found
+    response.write('Du musst dich zuerst registrieren!');
+  }
+
+  response.end(); // StatusCode 200
 });
-
 // READ MESSAGES: GET /messages => Nachrichten auslesen
 app.get('/messages', (request, response) => {
-  fs.readFile('./chatMessages.json', (error, data) => {
-    const messagesFromFile = JSON.parse(data.toString());
-    messages = messagesFromFile;
-    response.write(JSON.stringify(messagesFromFile));
-    response.end();
-  });
+  response.write(JSON.stringify(messages));
+  response.end();
 });
+
+
 
 
 // UPDATE MESSAGE: PATCH /message => Nachricht bearbeiten

@@ -29,9 +29,15 @@ sendButton.addEventListener("click", () => {
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((response) => {
+    if (response.status === 401) {
+      response.text().then(responseBody => alert(responseBody));
+    }
   });
 });
 
+
+// REGISTER USER
 submitButton.addEventListener("click", () => {
   const username = nameInput.value;
 
