@@ -16,7 +16,7 @@ describe('JSON.stringify', () => {
     const something = {a: 'thing'};
     // YOUR SOLUTION
 
-    const answer = JSON.stringify(something);
+    const answer = null; // TODO: change this
 
     // DONT CHANGE THE NEXT LINE
     expect(answer).toBe('{"a":"thing"}');
@@ -26,8 +26,7 @@ describe('JSON.stringify', () => {
     const something = {};
     // YOUR SOLUTION
 
-    something.from = 'nothing';
-    const answer = JSON.stringify(something);
+    const answer = null; // TODO: change this
 
     // DONT CHANGE THE NEXT LINE
     expect(answer).toBe('{"from":"nothing"}');
@@ -49,7 +48,7 @@ describe('JSON.parse', () => {
     const requestBodyAsString = '{ "name": "Hans" }';
     // YOUR SOLUTION
 
-    const answer = JSON.parse(requestBodyAsString).name;
+    const answer = null; // TODO: change this
 
     // DONT CHANGE THE NEXT LINE
     expect(answer).toBe('Hans');
@@ -69,7 +68,7 @@ describe('JSON.parse', () => {
     const messagesAsString = '[{ "text": "Hi!", "sender": "Hans" },{ "text": "Jo!", "sender": "Marius" }]';
     // YOUR SOLUTION
 
-    const answer = JSON.parse(messagesAsString)[1].sender;
+    const answer = null; // TODO: change this
 
     // DONT CHANGE THE NEXT LINE
     expect(answer).toBe('Marius');
@@ -79,7 +78,7 @@ describe('JSON.parse', () => {
     const nested = '{"deep":"{\\"yes\\":\\"very\\"}"}';
     // YOUR SOLUTION
 
-    const answer = JSON.parse(JSON.parse(nested).deep).yes;
+    const answer = null; // TODO: change this
 
     // DONT CHANGE THE NEXT LINE
     expect(answer).toBe('very');

@@ -19,9 +19,7 @@ describe("fetch", () => {
       // YOUR SOLUTION
       // start with return fetch(...)
 
-      return fetch("/messages")
-        .then((response) => response.text())
-        .then((text) => text);
+      return fetch(/* TODO: CHANGE THIS */);
 
       // DONT CHANGE THE NEXT LINE
     };
@@ -41,10 +39,7 @@ describe("fetch", () => {
       // YOUR SOLUTION
       // start with return fetch(...)
 
-      return fetch("/admin", {
-        method: "post",
-        body: JSON.stringify({ enabled: true }),
-      });
+      return fetch(/* TODO: CHANGE THIS */);
 
       // DONT CHANGE THE NEXT LINE
     };
