@@ -49,7 +49,7 @@ describe("Start", () => {
   });
 
   // dieser Test wird nur ausgeführt wenn du das x vor test entfernst: test("#3", ...
-  test("#3", () => {
+  xtest("#3", () => {
     // Aufgabe: Ändere die Definition von der Funktion answer so, dass der CHECK erfolgreich ist.
 
     const answer = (a, b) => a + b;
