@@ -47,7 +47,29 @@ describe("fetch", () => {
     await resolving();
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch.mock.calls[0][0]).toBe("/admin");
-    expect(fetch.mock.calls[0][1]).toEqual({body: '{"enabled":true}', method: "post"});
+    expect(fetch.mock.calls[0][1]).toEqual({body: '{"enabled":true}', method: "POST"});
+  });
+
+  test("#3 fetch post", async () => {
+    const { fetch } = setupFetchMock(null);
+
+    const resolving = async () => {
+      // TASK:
+      // Do a POST request to the /blogpost route and send { title: "Yesterday", text: "Every trouble seemed so far away" } as post body
+      // and the correct header for the given format
+
+      // YOUR SOLUTION
+      // start with return fetch(...)
+
+      return fetch(/* TODO: SOLVE THIS */);
+
+      // DONT CHANGE THE NEXT LINE
+    };
+
+    await resolving();
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch.mock.calls[0][0]).toBe("/blogpost");
+    expect(fetch.mock.calls[0][1]).toEqual({body: '{"title":"Yesterday","text":"Every trouble seemed so far away"}', method: "POST", headers: { 'Content-Type': 'application/json' }});
   });
 });
 
