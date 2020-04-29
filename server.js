@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+
+// database.js einbinden
+const database = require('./database.js');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -37,7 +41,11 @@ app.post('/message', (request, response) => {
   const found = registeredNames.indexOf(sender) >= 0;
 
   if (found) {
-    messages.push(message);
+
+    // Aufgabe: message in mongodb speichern
+
+
+    // alt: messages.push(message);
   } else {
     response.statusCode = 401; // 401 Unauthorized; 404 Not Found
     response.write('Du musst dich zuerst registrieren!');
@@ -47,8 +55,20 @@ app.post('/message', (request, response) => {
 });
 // READ MESSAGES: GET /messages => Nachrichten auslesen
 app.get('/messages', (request, response) => {
-  response.write(JSON.stringify(messages));
-  response.end();
+  database.getMessages().then(messages => {
+    response.setHeader('Content-Type', 'application/json');
+    response.write(JSON.stringify(messages));
+    response.end();
+  });
+
+  /*
+  fs.readFile('./chatMessages.json', (error, data) => {
+    const messagesFromFile = JSON.parse(data.toString());
+    messages = messagesFromFile;
+    response.write(JSON.stringify(messagesFromFile));
+    response.end();
+  });
+  */
 });
 
 
@@ -57,6 +77,7 @@ app.get('/messages', (request, response) => {
 // UPDATE MESSAGE: PATCH /message => Nachricht bearbeiten
 // DELETE MESSAGE: DELETE /message => Nachricht löschen
 
-
-app.listen(3000, () => console.log('Server started'));
+database.bootstrap().then(() => {
+  app.listen(3000, () => console.log('Server started'));
+})
 // STARTEN: nodemon server.js
