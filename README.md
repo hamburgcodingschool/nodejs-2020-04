@@ -43,3 +43,8 @@ Links:
 
 Links:
 * HTTP Status Codes und deren Bedeutung: https://httpstatuses.com/
+
+### Session 5
+* module.exports & require
+* mongodb
+* mongoose

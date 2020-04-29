@@ -28,3 +28,7 @@ module.exports.bootstrap = function bootstrap() {
 module.exports.getMessages = function getMessages() {
   return MessageModel.find();
 }
+
+module.exports.createMessage = (message) => {
+  return MessageModel.create(message);
+}

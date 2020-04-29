@@ -41,17 +41,25 @@ app.post('/message', (request, response) => {
   const found = registeredNames.indexOf(sender) >= 0;
 
   if (found) {
+    const dMessage = {
+      sender: sender,
+      text: message.text,
+      likes: 0,
+    };
 
     // Aufgabe: message in mongodb speichern
-
+    database.createMessage(dMessage).then(() => {
+      response.end();
+    });
 
     // alt: messages.push(message);
   } else {
     response.statusCode = 401; // 401 Unauthorized; 404 Not Found
     response.write('Du musst dich zuerst registrieren!');
+    response.end();
+
   }
 
-  response.end(); // StatusCode 200
 });
 // READ MESSAGES: GET /messages => Nachrichten auslesen
 app.get('/messages', (request, response) => {
@@ -78,6 +86,8 @@ app.get('/messages', (request, response) => {
 // DELETE MESSAGE: DELETE /message => Nachricht löschen
 
 database.bootstrap().then(() => {
+  // Express App erst starten wenn wir sicher sind, dass wir eine Verbindung
+  // zur Datenbank haben.
   app.listen(3000, () => console.log('Server started'));
-})
+});
 // STARTEN: nodemon server.js
