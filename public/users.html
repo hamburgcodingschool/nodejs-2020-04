@@ -1,24 +1,41 @@
 <html>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .main {
+      width: 600px;
+      margin: 0 auto;
+    }
+
+    #messagelist {
+      display: block;
+      min-height: 100px;
+      border: 1px solid #555555;
+      border-radius: 4px;
+      padding: 8px;
+    }
+  </style>
   <body>
-    Name registrieren:
-    <input type="text" id="username">
-    <button id="submit">Absenden</button>
+    <div class="main">
+      <h1>NodeJS Chat</h1>
+      Name registrieren:
+      <input type="text" id="username" />
+      <button id="submit">Absenden</button>
 
-    <br />
-    <br />
-    Registrierte User:
-    <div id="userlist"></div>
-    <br />
-    <button id="load">Laden</button>
-    <br />
-    <br />
-    <br />
-    <div id="messagelist">
+      <br />
+      <br />
+      Registrierte User:
+      <button id="load">Laden</button>
+      <br />
+      <div id="userlist"></div>
+      <br />
+      <br />
+      <div id="messagelist"></div>
+      <br />
+      <input id="message" type="text" />
+      <button id="send">Nachricht absenden</button>
     </div>
-    <br />
-    <input id="message" type="text" />
-    <button id="send">Nachricht absenden</button>
-
     <script src="users.js"></script>
   </body>
 </html>

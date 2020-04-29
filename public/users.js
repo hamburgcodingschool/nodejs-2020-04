@@ -15,7 +15,7 @@ function loadMessages() {
       messagelist.innerText = "";
 
       messages.forEach((message) => {
-        messagelist.innerText += `${message.sender} sagt: ${message.text}\n`;
+        messagelist.innerText += `${message.sender}: ${message.text}\n`;
       });
     }); // messages = [{ text: 'Hallo', sender: 'Alfons' }]
 }
