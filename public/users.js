@@ -8,18 +8,27 @@ const sendButton = document.getElementById("send");
 const messageInput = document.getElementById("message");
 
 // "/messages" laden (über fetch) und die Antwort in messagelist schreiben
-function loadMessages() {
-  fetch("/messages", { method: "GET" })
-    .then((response) => response.json())
-    .then((messages) => {
-      messagelist.innerText = "";
 
-      messages.forEach((message) => {
-        messagelist.innerText += `${message.sender}: ${message.text}\n`;
-      });
-    }); // messages = [{ text: 'Hallo', sender: 'Alfons' }]
+// Aufgabe: loadMessages mit async/await umschreiben.
+async function loadMessages() {
+  const response = await fetch("/messages", { method: "GET" })
+  const messages = await response.json();
+  messagelist.innerHTML = "";
+
+  messages.forEach((message) => {
+    messagelist.innerHTML += `<p>${message.sender}: ${message.text} <button onclick="likeMessage('${message._id}')">👍${message.likes}</button></p>\n`;
+  });
 }
 setInterval(loadMessages, 2000);
+
+// sende method: PATCH request an /message/${id} und erhöhe die Anzahl der Likes
+async function likeMessage(id) {
+  await fetch(`/message/${id}`, { method: 'PATCH' })
+  loadMessages();
+
+  // identische Implentierung mit Promises:
+  // fetch(`/message/${id}`, { method: 'PATCH' }).then(() => loadMessages());
+}
 
 sendButton.addEventListener("click", () => {
   const message = { sender: nameInput.value, text: messageInput.value };

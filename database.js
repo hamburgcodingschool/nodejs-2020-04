@@ -32,3 +32,21 @@ module.exports.getMessages = function getMessages() {
 module.exports.createMessage = (message) => {
   return MessageModel.create(message);
 }
+
+// funktion zum "bearbeiten" / liken eine Nachricht
+// Nachricht aus Datenbank auslesen, Anzahl der Likes erhöhen und wieder abspeichern.
+/*
+module.exports.likeMessage = (messageId) => {
+  return MessageModel.findById(messageId).then(message => { // asynchron: geh mal los und hol ne Message
+    message.likes += 1; // synchron
+    return message.save(); // asynchron: Speichert die Änderungen an der Message in die Datenbank
+  });
+}
+*/
+
+// likeMessage identische Implementation mit async / await
+module.exports.likeMessage = async function likeMessage(messageId) {
+  const message = await MessageModel.findById(messageId);
+  message.likes += 1;
+  await message.save();
+}

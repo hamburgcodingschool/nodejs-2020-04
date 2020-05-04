@@ -48,3 +48,8 @@ Links:
 * module.exports & require
 * mongodb
 * mongoose
+
+### Session 6
+* PATCH request
+* mongoose .save() / update
+* async / await

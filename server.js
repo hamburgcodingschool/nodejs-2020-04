@@ -83,6 +83,12 @@ app.get('/messages', (request, response) => {
 
 
 // UPDATE MESSAGE: PATCH /message => Nachricht bearbeiten
+app.patch('/message/:id', async (request, response) => {
+  const messageId = request.params.id;
+  await database.likeMessage(messageId);
+  response.end();
+});
+
 // DELETE MESSAGE: DELETE /message => Nachricht löschen
 
 database.bootstrap().then(() => {
